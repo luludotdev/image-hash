@@ -1,14 +1,15 @@
 import fileType from 'file-type'
 import jpeg from 'jpeg-js'
 import { PNG } from 'pngjs'
+import { ERR_UNRECOGNISED_IMG, ERR_UNSUPPORTED_TYPE } from './errors'
 import { generateHash } from './hash'
 
 const readImageData = async (bytes: Buffer) => {
   const type = fileType(bytes)
-  if (type === undefined) throw new Error('Unrecognised file type!')
+  if (type === undefined) throw ERR_UNRECOGNISED_IMG
 
   if (type.mime !== 'image/png' && type.mime !== 'image/jpeg') {
-    throw new Error('Unsupported image type!')
+    throw ERR_UNSUPPORTED_TYPE
   }
 
   return type.mime === 'image/png' ? PNG.sync.read(bytes) : jpeg.decode(bytes)
