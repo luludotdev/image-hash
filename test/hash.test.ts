@@ -68,3 +68,11 @@ test('resized image similarity is < 3', t => {
   const distance = imageHashDistance(images.png, images.smaller)
   t.assert(distance < 3)
 })
+
+test('hash length is calculated correctly', t => {
+  const png16 = imageHash(images.png, false, 16)
+  t.is(png16.length, 64)
+
+  const png24 = imageHash(images.png, false, 24)
+  t.is(png24.length, 144)
+})
