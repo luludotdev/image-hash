@@ -1,3 +1,4 @@
+import { createHash } from 'crypto'
 import { readFileSync } from 'fs'
 import { join } from 'path'
 
@@ -21,3 +22,10 @@ export const SMALL_HASH =
 
 export const UNRELATED_HASH =
   '0fc01fc03fe03fe07b70f860fc60fc80fffc7ffc03a000000ff80ff807f003f0'
+
+export const sha1 = (bytes: Buffer) => {
+  const h = createHash('sha1')
+  h.update(bytes)
+
+  return h.digest('hex')
+}
