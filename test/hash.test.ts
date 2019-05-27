@@ -11,6 +11,7 @@ import {
   sha1,
   SMALL_HASH,
   UNRELATED_HASH,
+  UNRELATED_HASH_STRICT,
 } from './helpers'
 
 const images = fetchImages()
@@ -52,6 +53,16 @@ test('resolves the correct hashes', t => {
   t.is(png, IMAGE_HASH)
   t.is(smaller, SMALL_HASH)
   t.is(unrelated, UNRELATED_HASH)
+})
+
+test('resolves the correct hashes (strict)', t => {
+  const png = imageHash(images.png, true)
+  const smaller = imageHash(images.smaller, true)
+  const unrelated = imageHash(images.unrelated, true)
+
+  t.is(png, IMAGE_HASH)
+  t.is(smaller, SMALL_HASH)
+  t.is(unrelated, UNRELATED_HASH_STRICT)
 })
 
 test('similar images resolve to the same hash', t => {
