@@ -1,6 +1,10 @@
 import test from 'ava'
 import { imageHash, imageHashDistance } from '../src'
-import { ERR_INVALID_INPUT, ERR_UNSUPPORTED_TYPE } from '../src/errors'
+import {
+  ERR_INVALID_INPUT,
+  ERR_UNRECOGNISED_IMG,
+  ERR_UNSUPPORTED_TYPE,
+} from '../src/errors'
 import {
   fetchImages,
   IMAGE_HASH,
@@ -34,6 +38,10 @@ test('accepts .jpeg files', t => {
 
 test('fails on other image file types', t => {
   t.throws(() => imageHash(images.tiff), ERR_UNSUPPORTED_TYPE.message)
+})
+
+test('fails on unrecognised image types', t => {
+  t.throws(() => imageHash(Buffer.from([])), ERR_UNRECOGNISED_IMG.message)
 })
 
 test('resolves the correct hashes', t => {
