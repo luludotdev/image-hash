@@ -1,6 +1,7 @@
 import fileType from 'file-type'
 import jpeg from 'jpeg-js'
 import { PNG } from 'pngjs'
+import { distance } from './distance'
 import { ERR_UNRECOGNISED_IMG, ERR_UNSUPPORTED_TYPE } from './errors'
 import { generateHash } from './hash'
 
@@ -17,9 +18,21 @@ const readImageData = (bytes: Buffer) => {
 
 export const imageHash = (
   bytes: Buffer,
-  precise: boolean,
+  precise: boolean = false,
   bits: number = 16
 ) => {
   const data = readImageData(bytes)
   return generateHash(data, precise, bits)
+}
+
+export const imageHashDistance = (
+  a: Buffer,
+  b: Buffer,
+  precise: boolean = false,
+  bits: number = 16
+) => {
+  const hashA = imageHash(a, precise, bits)
+  const hashB = imageHash(b, precise, bits)
+
+  return distance(hashA, hashB)
 }
