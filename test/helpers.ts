@@ -8,6 +8,16 @@ export const fetchImages = () => {
   const smaller = readFileSync(join(base, 'test-smaller.png'))
   const jpeg = readFileSync(join(base, 'test.jpg'))
   const tiff = readFileSync(join(base, 'test.tif'))
+  const unrelated = readFileSync(join(base, 'unrelated.jpg'))
 
-  return { png, smaller, jpeg, tiff }
+  return { png, smaller, jpeg, tiff, unrelated }
 }
+
+export const IMAGE_HASH =
+  'ffffffffffffffffffffffffffffffff04201ff01ff81ff83ffc3ff80ff00000'
+
+export const SMALL_HASH =
+  'fffffffffffffffff7efffffffffffff04201ff01ff81ff83ffc3ff80ff00000'
+
+export const UNRELATED_HASH =
+  '0fc01fc03fe03fe07970f860fc60fcc0fffc7ffc038000400ff80ff807f003f0'
