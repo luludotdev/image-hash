@@ -4,7 +4,7 @@ import { PNG } from 'pngjs'
 import { ERR_UNRECOGNISED_IMG, ERR_UNSUPPORTED_TYPE } from './errors'
 import { generateHash } from './hash'
 
-const readImageData = async (bytes: Buffer) => {
+const readImageData = (bytes: Buffer) => {
   const type = fileType(bytes)
   if (type === undefined) throw ERR_UNRECOGNISED_IMG
 
@@ -15,11 +15,11 @@ const readImageData = async (bytes: Buffer) => {
   return type.mime === 'image/png' ? PNG.sync.read(bytes) : jpeg.decode(bytes)
 }
 
-export const imageHash = async (
+export const imageHash = (
   bytes: Buffer,
   precise: boolean,
   bits: number = 16
 ) => {
-  const data = await readImageData(bytes)
+  const data = readImageData(bytes)
   return generateHash(data, precise, bits)
 }
