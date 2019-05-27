@@ -43,9 +43,9 @@ const bitsToHexhash = (bitsArray: number[]) => {
 }
 
 type ImageData = PNG | RawImageData<Buffer>
-type HashFunction = (data: ImageData, bits?: number) => string
+type HashFunction = (data: ImageData, bits: number) => string
 
-const bmvbhashEven: HashFunction = (data, bits = 16) => {
+const bmvbhashEven: HashFunction = (data, bits) => {
   const blocksizeX = Math.floor(data.width / bits)
   const blocksizeY = Math.floor(data.height / bits)
 
@@ -78,7 +78,7 @@ const bmvbhashEven: HashFunction = (data, bits = 16) => {
   return bitsToHexhash(result)
 }
 
-const bmvbhash: HashFunction = (data, bits = 16) => {
+const bmvbhash: HashFunction = (data, bits) => {
   const result: number[] = []
   let weightTop
   let weightBottom
@@ -188,5 +188,5 @@ const bmvbhash: HashFunction = (data, bits = 16) => {
 export const generateHash = (
   imgData: ImageData,
   precise: boolean,
-  bits: number = 16
+  bits: number
 ) => (precise ? bmvbhash(imgData, bits) : bmvbhashEven(imgData, bits))
