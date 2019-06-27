@@ -5,8 +5,8 @@
 [![Dependencies](https://img.shields.io/david/lolpants/image-hash.svg?maxAge=3600)](https://david-dm.org/lolpants/image-hash)
 [![Coverage Status](https://coveralls.io/repos/github/lolPants/image-hash/badge.svg?branch=master)](https://coveralls.io/github/lolPants/image-hash?branch=master)
 
-_Generate perceptual hashes for PNG or JPEG images._  
-Written in TypeScript, compiled down to ES5 for use in any Node.js version!
+_Generate perceptual hashes for PNG or JPEG images._
+Written in TypeScript, compiled down to ES2017 for use in any Node.js >=8.x!
 
 ## 💾 Installation
 The package is on the NPM registry as `@lolpants/image-hash`. Simply install it with your NPM client of choice.
