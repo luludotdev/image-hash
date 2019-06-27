@@ -1,6 +1,6 @@
 {
   "name": "@lolpants/image-hash",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Generate perceptual hashes for PNG or JPEG images",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -21,7 +21,7 @@
     "check": "yarn run build --noEmit",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "prebuild": "rimraf lib",
-    "build": "tsc --sourceMap",
+    "build": "tsc",
     "watch": "tsc --watch",
     "dev": "yarn run watch  --sourceMap"
   },
