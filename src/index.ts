@@ -45,3 +45,5 @@ export const imageHashDistance = (
 
   return distance(hashA, hashB)
 }
+
+export { distance } from './distance'
