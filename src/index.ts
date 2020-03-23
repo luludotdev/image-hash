@@ -10,8 +10,8 @@ import {
   ERR_UNSUPPORTED_TYPE,
 } from './errors'
 
-const readImageData = (bytes: Buffer) => {
-  const type = fileType(bytes)
+const readImageData = async (bytes: Buffer) => {
+  const type = await fileType.fromBuffer(bytes)
   if (type === undefined) throw ERR_UNRECOGNISED_IMG
 
   if (type.mime !== 'image/png' && type.mime !== 'image/jpeg') {
@@ -21,7 +21,7 @@ const readImageData = (bytes: Buffer) => {
   return type.mime === 'image/png' ? PNG.sync.read(bytes) : jpeg.decode(bytes)
 }
 
-export const imageHash = (
+export const imageHash = async (
   bytes: Buffer,
   precise: boolean = false,
   bits: number = 16
@@ -30,18 +30,18 @@ export const imageHash = (
     throw ERR_INVALID_INPUT
   }
 
-  const data = readImageData(bytes)
+  const data = await readImageData(bytes)
   return generateHash(data, precise, bits)
 }
 
-export const imageHashDistance = (
+export const imageHashDistance = async (
   a: Buffer,
   b: Buffer,
   precise: boolean = false,
   bits: number = 16
 ) => {
-  const hashA = imageHash(a, precise, bits)
-  const hashB = imageHash(b, precise, bits)
+  const hashA = await imageHash(a, precise, bits)
+  const hashB = await imageHash(b, precise, bits)
 
   return distance(hashA, hashB)
 }
