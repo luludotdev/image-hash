@@ -32,23 +32,23 @@
   "author": "Jack Baron <jackmbaron@gmail.com> (https://www.jackbaron.com)",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^13.1.1",
-    "@types/pngjs": "^3.4.0",
-    "@zeit/ncc": "^0.20.5",
-    "ava": "^2.4.0",
-    "coveralls": "^3.0.9",
+    "@types/node": "^13.9.3",
+    "@types/pngjs": "^3.4.2",
+    "@zeit/ncc": "^0.21.1",
+    "ava": "^3.5.1",
+    "coveralls": "^3.0.11",
     "nyc": "^15.0.0",
-    "prettier": "^1.19.1",
-    "rimraf": "^3.0.0",
-    "ts-node": "^8.5.4",
+    "prettier": "^2.0.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^8.8.1",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
-    "tslint-plugin-prettier": "^2.1.0",
-    "typescript": "^3.7.4"
+    "tslint-plugin-prettier": "^2.2.0",
+    "typescript": "^3.8.3"
   },
   "dependencies": {
-    "file-type": "^12.4.2",
-    "jpeg-js": "^0.3.6",
+    "file-type": "^14.1.4",
+    "jpeg-js": "^0.3.7",
     "pngjs": "^3.4.0"
   },
   "ava": {
