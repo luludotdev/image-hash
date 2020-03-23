@@ -16,74 +16,82 @@ import {
 
 const images = fetchImages()
 
-test('only accepts buffer types', t => {
+test('only accepts buffer types', async t => {
   // @ts-ignore
-  t.throws(() => imageHash('e'), ERR_INVALID_INPUT.message)
-
-  // @ts-ignore
-  t.throws(() => imageHash(5), ERR_INVALID_INPUT.message)
+  await t.throwsAsync(() => imageHash('e'), null, ERR_INVALID_INPUT.message)
 
   // @ts-ignore
-  t.throws(() => imageHash([5]), ERR_INVALID_INPUT.message)
+  await t.throwsAsync(() => imageHash(5), null, ERR_INVALID_INPUT.message)
 
-  t.notThrows(() => imageHash(images.png))
+  // @ts-ignore
+  await t.throwsAsync(() => imageHash([5]), null, ERR_INVALID_INPUT.message)
+
+  await t.notThrowsAsync(() => imageHash(images.png))
 })
 
-test('accepts .png files', t => {
-  t.notThrows(() => imageHash(images.png))
+test('accepts .png files', async t => {
+  await t.notThrowsAsync(() => imageHash(images.png))
 })
 
-test('accepts .jpeg files', t => {
-  t.notThrows(() => imageHash(images.jpeg))
+test('accepts .jpeg files', async t => {
+  await t.notThrowsAsync(() => imageHash(images.jpeg))
 })
 
-test('fails on other image file types', t => {
-  t.throws(() => imageHash(images.tiff), ERR_UNSUPPORTED_TYPE.message)
+test('fails on other image file types', async t => {
+  await t.throwsAsync(
+    () => imageHash(images.tiff),
+    null,
+    ERR_UNSUPPORTED_TYPE.message
+  )
 })
 
-test('fails on unrecognised image types', t => {
-  t.throws(() => imageHash(Buffer.from([])), ERR_UNRECOGNISED_IMG.message)
+test('fails on unrecognised image types', async t => {
+  await t.throwsAsync(
+    () => imageHash(Buffer.from([])),
+    null,
+    ERR_UNRECOGNISED_IMG.message
+  )
 })
 
-test('resolves the correct hashes', t => {
-  const png = imageHash(images.png)
-  const smaller = imageHash(images.smaller)
-  const unrelated = imageHash(images.unrelated)
+test('resolves the correct hashes', async t => {
+  const png = await imageHash(images.png)
+  const smaller = await imageHash(images.smaller)
+  const unrelated = await imageHash(images.unrelated)
 
   t.is(png, IMAGE_HASH)
   t.is(smaller, SMALL_HASH)
   t.is(unrelated, UNRELATED_HASH)
 })
 
-test('resolves the correct hashes (strict)', t => {
-  const png = imageHash(images.png, true)
-  const smaller = imageHash(images.smaller, true)
-  const unrelated = imageHash(images.unrelated, true)
+test('resolves the correct hashes (strict)', async t => {
+  const png = await imageHash(images.png, true)
+  const smaller = await imageHash(images.smaller, true)
+  const unrelated = await imageHash(images.unrelated, true)
 
   t.is(png, IMAGE_HASH)
   t.is(smaller, SMALL_HASH)
   t.is(unrelated, UNRELATED_HASH_STRICT)
 })
 
-test('similar images resolve to the same hash', t => {
+test('similar images resolve to the same hash', async t => {
   const shaPNG = sha1(images.png)
   const shaJPEG = sha1(images.jpeg)
   t.assert(shaPNG !== shaJPEG)
 
-  const png = imageHash(images.png)
-  const jpeg = imageHash(images.jpeg)
+  const png = await imageHash(images.png)
+  const jpeg = await imageHash(images.jpeg)
   t.assert(png === jpeg)
 })
 
-test('resized image similarity is < 3', t => {
-  const distance = imageHashDistance(images.png, images.smaller)
+test('resized image similarity is < 3', async t => {
+  const distance = await imageHashDistance(images.png, images.smaller)
   t.assert(distance < 3)
 })
 
-test('hash length is calculated correctly', t => {
-  const png16 = imageHash(images.png, false, 16)
+test('hash length is calculated correctly', async t => {
+  const png16 = await imageHash(images.png, false, 16)
   t.is(png16.length, 64)
 
-  const png24 = imageHash(images.png, false, 24)
+  const png24 = await imageHash(images.png, false, 24)
   t.is(png24.length, 144)
 })
