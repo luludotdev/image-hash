@@ -52,7 +52,6 @@
     "pngjs": "^3.4.0"
   },
   "ava": {
-    "compileEnhancements": false,
     "files": [
       "test/**/*.ts",
       "!test/helpers.ts"
