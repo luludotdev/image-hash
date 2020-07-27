@@ -1582,10 +1582,10 @@ jest-docblock@^21.0.0:
   resolved "https://registry.yarnpkg.com/jest-docblock/-/jest-docblock-21.2.0.tgz#51529c3b30d5fd159da60c27ceedc195faf8d414"
   integrity sha512-5IZ7sY9dBAYSV+YjQ0Ovb540Ku7AO9Z5o2Cg789xj167iQuZ2cG+z0f3Uct6WeYLbU6aQiM2pCs7sZ+4dotydw==
 
-jpeg-js@^0.3.7:
-  version "0.3.7"
-  resolved "https://registry.yarnpkg.com/jpeg-js/-/jpeg-js-0.3.7.tgz#471a89d06011640592d314158608690172b1028d"
-  integrity sha512-9IXdWudL61npZjvLuVe/ktHiA41iE8qFyLB+4VDTblEsWBzeg8WQTlktdUK4CdncUqtUgUg0bbOmTE2bKBKaBQ==
+jpeg-js@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/jpeg-js/-/jpeg-js-0.4.0.tgz#39adab7245b6d11e918ba5d4b49263ff2fc6a2f9"
+  integrity sha512-960VHmtN1vTpasX/1LupLohdP5odwAT7oK/VSm6mW0M58LbrBnowLAPWAZhWGhDAGjzbMnPXZxzB/QYgBwkN0w==
 
 js-string-escape@^1.0.1:
   version "1.0.1"
