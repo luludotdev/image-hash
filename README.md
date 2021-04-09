@@ -1,9 +1,8 @@
 # 🖼 Image Hash
+![Node.js CI](https://github.com/lolPants/image-hash/workflows/Node.js%20CI/badge.svg?branch=master)
 [![NPM version](https://img.shields.io/npm/v/@lolpants/image-hash.svg?maxAge=3600)](https://www.npmjs.com/package/@lolpants/image-hash)
 [![NPM downloads](https://img.shields.io/npm/dt/@lolpants/image-hash.svg?maxAge=3600)](https://www.npmjs.com/package/@lolpants/image-hash)
-[![Build status](https://travis-ci.com/lolPants/image-hash.svg)](https://travis-ci.com/lolPants/image-hash)
 [![Dependencies](https://img.shields.io/david/lolpants/image-hash.svg?maxAge=3600)](https://david-dm.org/lolpants/image-hash)
-[![Coverage Status](https://coveralls.io/repos/github/lolPants/image-hash/badge.svg?branch=master)](https://coveralls.io/github/lolPants/image-hash?branch=master)
 
 _Generate perceptual hashes for PNG or JPEG images._
 Written in TypeScript, compiled down to ES2017 for use in any Node.js >=8.x!
