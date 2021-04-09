@@ -1,6 +1,6 @@
 {
   "name": "@lolpants/image-hash",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Generate perceptual hashes for PNG or JPEG images",
   "type": "module",
   "exports": "./lib/index.js",
