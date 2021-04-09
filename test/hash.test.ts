@@ -5,7 +5,6 @@ import {
   ERR_UNSUPPORTED_TYPE,
 } from '../src/errors.js'
 import { imageHash, imageHashDistance } from '../src/index.js'
-// eslint-disable-next-line ava/no-import-test-files
 import {
   fetchImages,
   IMAGE_HASH,
