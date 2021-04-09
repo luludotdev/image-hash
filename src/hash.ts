@@ -8,7 +8,7 @@ import { PNG } from 'pngjs'
 const median = (data: number[]) => {
   const mdarr = data.slice(0).sort((a, b) => a - b)
   if (mdarr.length % 2 === 0) {
-    return (mdarr[mdarr.length / 2] + mdarr[mdarr.length / 2 + 1]) / 2.0
+    return (mdarr[mdarr.length / 2] + mdarr[mdarr.length / 2 + 1]) / 2
   }
 
   return mdarr[Math.floor(mdarr.length / 2)]
@@ -36,7 +36,7 @@ const bitsToHexhash = (bitsArray: number[]) => {
   const hex = []
   for (let i = 0; i < bitsArray.length; i += 4) {
     const nibble = bitsArray.slice(i, i + 4)
-    hex.push(parseInt(nibble.join(''), 2).toString(16))
+    hex.push(Number.parseInt(nibble.join(''), 2).toString(16))
   }
 
   return hex.join('')
@@ -62,11 +62,10 @@ const bmvbhashEven: HashFunction = (data, bits) => {
           const ii = (cy * data.width + cx) * 4
 
           const alpha = data.data[ii + 3]
-          if (alpha === 0) {
-            total += 765
-          } else {
-            total += data.data[ii] + data.data[ii + 1] + data.data[ii + 2]
-          }
+          total +=
+            alpha === 0
+              ? 765
+              : data.data[ii] + data.data[ii + 1] + data.data[ii + 2]
         }
       }
 
@@ -137,14 +136,12 @@ const bmvbhash: HashFunction = (data, bits) => {
     }
 
     for (let x = 0; x < data.width; x += 1) {
-      let avgvalue
       const ii = (y * data.width + x) * 4
       const alpha = data.data[ii + 3]
-      if (alpha === 0) {
-        avgvalue = 765
-      } else {
-        avgvalue = data.data[ii] + data.data[ii + 1] + data.data[ii + 2]
-      }
+      const avgvalue =
+        alpha === 0
+          ? 765
+          : data.data[ii] + data.data[ii + 1] + data.data[ii + 2]
 
       if (evenX) {
         blockRight = Math.floor(x / blockWidth)

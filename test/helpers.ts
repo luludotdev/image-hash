@@ -3,7 +3,7 @@ import { readFileSync } from 'fs'
 import { join } from 'path'
 
 export const fetchImages = () => {
-  const base = join(__dirname, 'images')
+  const base = join('test', 'images')
 
   const png = readFileSync(join(base, 'test.png'))
   const smaller = readFileSync(join(base, 'test-smaller.png'))

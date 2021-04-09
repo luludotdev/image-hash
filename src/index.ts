@@ -1,14 +1,13 @@
 import fileType from 'file-type'
 import jpeg from 'jpeg-js'
 import { PNG } from 'pngjs'
-import { distance } from './distance'
-import { generateHash } from './hash'
-
+import { distance } from './distance.js'
 import {
   ERR_INVALID_INPUT,
   ERR_UNRECOGNISED_IMG,
   ERR_UNSUPPORTED_TYPE,
-} from './errors'
+} from './errors.js'
+import { generateHash } from './hash.js'
 
 const readImageData = async (bytes: Buffer) => {
   const type = await fileType.fromBuffer(bytes)
@@ -21,11 +20,7 @@ const readImageData = async (bytes: Buffer) => {
   return type.mime === 'image/png' ? PNG.sync.read(bytes) : jpeg.decode(bytes)
 }
 
-export const imageHash = async (
-  bytes: Buffer,
-  precise: boolean = false,
-  bits: number = 16
-) => {
+export const imageHash = async (bytes: Buffer, precise = false, bits = 16) => {
   if (!(bytes instanceof Buffer)) {
     throw ERR_INVALID_INPUT
   }
@@ -37,8 +32,8 @@ export const imageHash = async (
 export const imageHashDistance = async (
   a: Buffer,
   b: Buffer,
-  precise: boolean = false,
-  bits: number = 16
+  precise = false,
+  bits = 16
 ) => {
   const hashA = await imageHash(a, precise, bits)
   const hashB = await imageHash(b, precise, bits)
@@ -46,4 +41,4 @@ export const imageHashDistance = async (
   return distance(hashA, hashB)
 }
 
-export { distance } from './distance'
+export { distance } from './distance.js'

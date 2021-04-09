@@ -1,10 +1,11 @@
 import test from 'ava'
-import { imageHash, imageHashDistance } from '../src'
 import {
   ERR_INVALID_INPUT,
   ERR_UNRECOGNISED_IMG,
   ERR_UNSUPPORTED_TYPE,
-} from '../src/errors'
+} from '../src/errors.js'
+import { imageHash, imageHashDistance } from '../src/index.js'
+// eslint-disable-next-line ava/no-import-test-files
 import {
   fetchImages,
   IMAGE_HASH,
@@ -12,34 +13,42 @@ import {
   SMALL_HASH,
   UNRELATED_HASH,
   UNRELATED_HASH_STRICT,
-} from './helpers'
+} from './helpers.js'
 
 const images = fetchImages()
 
 test('only accepts buffer types', async t => {
-  // @ts-ignore
-  await t.throwsAsync(() => imageHash('e'), null, ERR_INVALID_INPUT.message)
+  await t.throwsAsync(
+    // @ts-expect-error
+    async () => imageHash('e'),
+    null,
+    ERR_INVALID_INPUT.message
+  )
 
-  // @ts-ignore
-  await t.throwsAsync(() => imageHash(5), null, ERR_INVALID_INPUT.message)
+  // @ts-expect-error
+  await t.throwsAsync(async () => imageHash(5), null, ERR_INVALID_INPUT.message)
 
-  // @ts-ignore
-  await t.throwsAsync(() => imageHash([5]), null, ERR_INVALID_INPUT.message)
+  await t.throwsAsync(
+    // @ts-expect-error
+    async () => imageHash([5]),
+    null,
+    ERR_INVALID_INPUT.message
+  )
 
-  await t.notThrowsAsync(() => imageHash(images.png))
+  await t.notThrowsAsync(async () => imageHash(images.png))
 })
 
 test('accepts .png files', async t => {
-  await t.notThrowsAsync(() => imageHash(images.png))
+  await t.notThrowsAsync(async () => imageHash(images.png))
 })
 
 test('accepts .jpeg files', async t => {
-  await t.notThrowsAsync(() => imageHash(images.jpeg))
+  await t.notThrowsAsync(async () => imageHash(images.jpeg))
 })
 
 test('fails on other image file types', async t => {
   await t.throwsAsync(
-    () => imageHash(images.tiff),
+    async () => imageHash(images.tiff),
     null,
     ERR_UNSUPPORTED_TYPE.message
   )
@@ -47,7 +56,7 @@ test('fails on other image file types', async t => {
 
 test('fails on unrecognised image types', async t => {
   await t.throwsAsync(
-    () => imageHash(Buffer.from([])),
+    async () => imageHash(Buffer.from([])),
     null,
     ERR_UNRECOGNISED_IMG.message
   )
