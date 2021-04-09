@@ -13,10 +13,6 @@ The package is on the NPM registry as `@lolpants/image-hash`. Simply install it 
 
 ## 🔧 Usage
 ```ts
-// Import (CommonJS)
-const { imageHash } = require('@lolpants/image-hash')
-
-// Import (ESM)
 import { imageHash } from '@lolpants/image-hash'
 
 // Resolve
