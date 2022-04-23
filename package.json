@@ -15,7 +15,7 @@
     "prepublish": "yarn run test",
     "test": "yarn run check && yarn run lint",
     "check": "yarn run compile --noEmit",
-    "lint": "xo ./src",
+    "lint": "xo ./src ./test",
     "clean": "rimraf lib",
     "compile": "tsc",
     "build": "yarn run clean && yarn run compile",
