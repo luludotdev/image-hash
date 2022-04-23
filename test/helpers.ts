@@ -1,6 +1,7 @@
-import { createHash } from 'crypto'
-import { readFileSync } from 'fs'
-import { join } from 'path'
+import { type Buffer } from 'node:buffer'
+import { createHash } from 'node:crypto'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 
 export const fetchImages = () => {
   const base = join('test', 'images')

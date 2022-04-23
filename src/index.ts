@@ -1,5 +1,6 @@
-import fileType from 'file-type'
+import { fileTypeFromBuffer } from 'file-type'
 import jpeg from 'jpeg-js'
+import { Buffer } from 'node:buffer'
 import { PNG } from 'pngjs'
 import { distance } from './distance.js'
 import {
@@ -10,7 +11,7 @@ import {
 import { generateHash } from './hash.js'
 
 const readImageData = async (bytes: Buffer) => {
-  const type = await fileType.fromBuffer(bytes)
+  const type = await fileTypeFromBuffer(bytes)
   if (type === undefined) throw ERR_UNRECOGNISED_IMG
 
   if (type.mime !== 'image/png' && type.mime !== 'image/jpeg') {
@@ -21,7 +22,7 @@ const readImageData = async (bytes: Buffer) => {
 }
 
 export const imageHash = async (bytes: Buffer, precise = false, bits = 16) => {
-  if (!(bytes instanceof Buffer)) {
+  if (!Buffer.isBuffer(bytes)) {
     throw ERR_INVALID_INPUT
   }
 

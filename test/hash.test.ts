@@ -1,4 +1,6 @@
+/* eslint-disable ava/assertion-arguments */
 import test from 'ava'
+import { Buffer } from 'node:buffer'
 import {
   ERR_INVALID_INPUT,
   ERR_UNRECOGNISED_IMG,
@@ -18,19 +20,23 @@ const images = fetchImages()
 
 test('only accepts buffer types', async t => {
   await t.throwsAsync(
-    // @ts-expect-error
+    // @ts-expect-error Invalid Input
     async () => imageHash('e'),
-    null,
+    undefined,
     ERR_INVALID_INPUT.message
   )
 
-  // @ts-expect-error
-  await t.throwsAsync(async () => imageHash(5), null, ERR_INVALID_INPUT.message)
+  await t.throwsAsync(
+    // @ts-expect-error Invalid Input
+    async () => imageHash(5),
+    undefined,
+    ERR_INVALID_INPUT.message
+  )
 
   await t.throwsAsync(
-    // @ts-expect-error
+    // @ts-expect-error Invalid Input
     async () => imageHash([5]),
-    null,
+    undefined,
     ERR_INVALID_INPUT.message
   )
 
@@ -48,7 +54,7 @@ test('accepts .jpeg files', async t => {
 test('fails on other image file types', async t => {
   await t.throwsAsync(
     async () => imageHash(images.tiff),
-    null,
+    undefined,
     ERR_UNSUPPORTED_TYPE.message
   )
 })
@@ -56,7 +62,7 @@ test('fails on other image file types', async t => {
 test('fails on unrecognised image types', async t => {
   await t.throwsAsync(
     async () => imageHash(Buffer.from([])),
-    null,
+    undefined,
     ERR_UNRECOGNISED_IMG.message
   )
 })

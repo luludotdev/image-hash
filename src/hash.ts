@@ -1,4 +1,5 @@
 import { RawImageData } from 'jpeg-js'
+import { type Buffer } from 'node:buffer'
 import { PNG } from 'pngjs'
 
 // Code modified from https://github.com/danm/image-hash
@@ -6,7 +7,7 @@ import { PNG } from 'pngjs'
 // https://github.com/danm/image-hash/blob/master/LICENSE
 
 const median = (data: number[]) => {
-  const mdarr = data.slice(0).sort((a, b) => a - b)
+  const mdarr = [...data].sort((a, b) => a - b)
   if (mdarr.length % 2 === 0) {
     return (mdarr[mdarr.length / 2] + mdarr[mdarr.length / 2 + 1]) / 2
   }
