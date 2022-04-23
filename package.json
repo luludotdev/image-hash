@@ -13,7 +13,7 @@
   "scripts": {
     "prepack": "yarn run build",
     "prepublish": "yarn run test",
-    "test": "yarn run check && yarn run lint",
+    "test": "yarn run check && yarn run lint && yarn run ava",
     "check": "yarn run compile --noEmit",
     "lint": "xo ./src ./test",
     "clean": "rimraf lib",
