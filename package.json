@@ -1,6 +1,7 @@
 {
   "name": "@lolpants/image-hash",
   "version": "3.0.0",
+  "packageManager": "yarn@3.2.0",
   "description": "Generate perceptual hashes for PNG or JPEG images",
   "type": "module",
   "exports": "./lib/index.js",
@@ -25,7 +26,6 @@
   "repository": "git@github.com:lolPants/image-hash.git",
   "author": "Jack Baron <jackmbaron@gmail.com> (https://www.jackbaron.com)",
   "license": "ISC",
-  "private": false,
   "engines": {
     "node": ">=14"
   },
