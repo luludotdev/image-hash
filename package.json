@@ -11,17 +11,15 @@
     "lib/**/*"
   ],
   "scripts": {
-    "prepublishOnly": "yarn run test && yarn run build",
-    "test": "yarn run check && yarn run lint && yarn run ava",
+    "prepack": "yarn run build",
+    "prepublish": "yarn run test",
+    "test": "yarn run check && yarn run lint",
     "check": "yarn run compile --noEmit",
-    "lint": "xo",
+    "lint": "xo ./src",
     "clean": "rimraf lib",
-    "prebuild": "yarn run clean",
-    "build": "yarn run compile",
     "compile": "tsc",
-    "watch": "yarn run compile --watch",
-    "predev": "yarn run clean",
-    "dev": "yarn run watch  --sourceMap"
+    "build": "yarn run clean && yarn run compile",
+    "dev": "yarn run clean && yarn run compile --watch"
   },
   "repository": "git@github.com:lolPants/image-hash.git",
   "author": "Jack Baron <jackmbaron@gmail.com> (https://www.jackbaron.com)",
