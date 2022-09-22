@@ -50,5 +50,4 @@ docs
 .vscode
 
 # Compiled TypeScript
-lib/
-esm/
+dist/
