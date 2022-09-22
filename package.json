@@ -1,6 +1,6 @@
 {
   "name": "@lolpants/image-hash",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "packageManager": "yarn@3.2.3",
   "description": "Generate perceptual hashes for PNG or JPEG images",
   "type": "module",
