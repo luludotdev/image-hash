@@ -1,3 +1,5 @@
+/* eslint-disable id-length */
+
 // Code adapted from thist Gist
 // https://gist.github.com/andrei-m/982927
 
@@ -24,7 +26,7 @@ export const distance = (a: string, b: string) => {
       } else {
         matrix[i][j] = Math.min(
           matrix[i - 1][j - 1] + 1,
-          Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1)
+          Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1),
         )
       }
     }

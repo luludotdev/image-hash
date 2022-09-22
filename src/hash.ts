@@ -1,6 +1,8 @@
-import { RawImageData } from 'jpeg-js'
-import { type Buffer } from 'node:buffer'
-import { PNG } from 'pngjs'
+/* eslint-disable id-length */
+
+import type { Buffer } from 'node:buffer'
+import type { RawImageData } from 'jpeg-js'
+import type { PNG } from 'pngjs'
 
 // Code modified from https://github.com/danm/image-hash
 // Licensed under the MIT License
@@ -27,7 +29,7 @@ const translateBlocksToBits = (blocks: number[], pixelsPerBlock: number) => {
       const v = blocks[j]
 
       newblocks[j] = Number(
-        v > m || (Math.abs(v - m) < 1 && m > halfBlockValue)
+        v > m || (Math.abs(v - m) < 1 && m > halfBlockValue),
       )
     }
   }
@@ -186,5 +188,5 @@ const bmvbhash: HashFunction = (data, bits) => {
 export const generateHash = (
   imgData: ImageData,
   precise: boolean,
-  bits: number
+  bits: number,
 ) => (precise ? bmvbhash(imgData, bits) : bmvbhashEven(imgData, bits))

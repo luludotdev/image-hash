@@ -1,6 +1,6 @@
+import { Buffer } from 'node:buffer'
 import { fileTypeFromBuffer } from 'file-type'
 import jpeg from 'jpeg-js'
-import { Buffer } from 'node:buffer'
 import { PNG } from 'pngjs'
 import { distance } from './distance.js'
 import {
@@ -34,7 +34,7 @@ export const imageHashDistance = async (
   a: Buffer,
   b: Buffer,
   precise = false,
-  bits = 16
+  bits = 16,
 ) => {
   const hashA = await imageHash(a, precise, bits)
   const hashB = await imageHash(b, precise, bits)

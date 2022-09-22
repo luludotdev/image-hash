@@ -1,4 +1,4 @@
-import { type Buffer } from 'node:buffer'
+import type { Buffer } from 'node:buffer'
 import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
@@ -28,8 +28,8 @@ export const UNRELATED_HASH_STRICT =
   '0fc01fc03fe03fe07970f860fc60fcc0fffc7ffc038000400ff80ff807f003f0'
 
 export const sha1 = (bytes: Buffer) => {
-  const h = createHash('sha1')
-  h.update(bytes)
+  const hash = createHash('sha1')
+  hash.update(bytes)
 
-  return h.digest('hex')
+  return hash.digest('hex')
 }
