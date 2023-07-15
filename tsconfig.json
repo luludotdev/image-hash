@@ -12,7 +12,7 @@
     "noUnusedParameters": true,
     "strict": true,
     "useUnknownInCatchVariables": true,
-    "noUncheckedIndexedAccess": false,
+    "noUncheckedIndexedAccess": true,
 
     // Modules
     "module": "ESNext",
@@ -24,7 +24,6 @@
     "declarationMap": true,
     "importHelpers": false,
     "noEmitHelpers": false,
-    "importsNotUsedAsValues": "error",
     "inlineSources": true,
     "newLine": "lf",
     "outDir": "dist",

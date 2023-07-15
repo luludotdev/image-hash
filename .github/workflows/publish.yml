@@ -4,22 +4,28 @@ on:
     types: [published]
 
 env:
-  NODE_VERSION: 16.x
+  NODE_VERSION: 18.x
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          cache: yarn
+          cache: npm
           node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+      - name: Update npm
+        run: npm install -g npm
       - name: Install packages
-        run: yarn install --immutable
+        run: npm ci
       - name: Publish to NPM
-        run: yarn npm publish
+        run: npm publish --provenance --access public
         env:
-          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

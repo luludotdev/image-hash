@@ -1,7 +1,3 @@
-# Yarn
-.yarn/
-.yarnrc.yml
-
 # Generated
 coverage/
 dist/

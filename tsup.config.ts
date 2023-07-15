@@ -1,4 +1,5 @@
-import { defineConfig, type Options } from 'tsup'
+import { defineConfig } from 'tsup'
+import type { Options } from 'tsup'
 
 export function createTsupConfig({
   entry = ['./src/index.ts'],
@@ -6,17 +7,16 @@ export function createTsupConfig({
   noExternal = [],
   platform = 'node',
   format = 'esm',
-  target = 'es2022',
+  target = 'es2021',
   skipNodeModulesBundle = true,
   clean = true,
   shims = true,
-  minify = false,
   splitting = false,
   keepNames = true,
   dts = true,
   sourcemap = true,
-}: Options = {}) {
-  return defineConfig({
+}: Omit<Options, 'minify'> = {}) {
+  return defineConfig(options => ({
     entry,
     external,
     noExternal,
@@ -26,12 +26,14 @@ export function createTsupConfig({
     target,
     clean,
     shims,
-    minify,
+    minify: !options.watch,
     splitting,
     keepNames,
     dts,
     sourcemap,
-  })
+  }))
 }
 
-export default createTsupConfig()
+export default createTsupConfig({
+  shims: false,
+})

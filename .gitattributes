@@ -1,8 +1,5 @@
 # CRLF Normalisation
 * text eol=lf
-*.png binary -text -eol
-*.jpg binary -text -eol
-*.tif binary -text -eol
 
 # Ignore meta files in ZIP export
 .gitattributes export-ignore
