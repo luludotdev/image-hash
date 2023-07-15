@@ -1,6 +1,6 @@
 {
   "name": "@luludev/image-hash",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "Generate perceptual hashes for PNG or JPEG images",
   "type": "module",
   "main": "./dist/index.js",
